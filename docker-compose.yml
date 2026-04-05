@@ -99,6 +99,7 @@ services:
       - .env
     environment:
       POSTGRES_HOST: postgres
+      AIRFLOW_BASE_URL: http://airflow-webserver:8080
     volumes:
       - ./backend:/app
       - ./dags:/dags
