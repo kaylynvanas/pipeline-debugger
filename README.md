@@ -2,7 +2,7 @@
 
 When an Apache Airflow DAG task fails, a LangGraph agent automatically investigates the root cause — fetching task logs, querying Postgres, and reading DAG source code — then produces a structured diagnosis (error category, root cause, evidence, suggested fix) persisted to Postgres and displayed in a React dashboard. All agent runs are traced in LangSmith.
 
-![Demo](docs/demo.gif)
+https://github.com/user-attachments/assets/0419bfdf-5a6c-4820-9398-bdadd01e2e46
 
 ## How it works
 
