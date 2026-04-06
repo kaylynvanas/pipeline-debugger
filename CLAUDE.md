@@ -33,13 +33,16 @@ pipeline-debugger/
 │   └── src/
 │       ├── App.tsx
 │       ├── components/
+│       │   ├── DiagnosisPanel.tsx
+│       │   ├── ErrorBoundary.tsx
 │       │   ├── FailuresList.tsx
-│       │   └── DiagnosisPanel.tsx
+│       │   └── FailuresSkeleton.tsx
 │       └── api.ts
 ├── dags/
 │   ├── schema_mismatch_dag.py
 │   ├── bad_sql_dag.py
-│   └── upstream_failure_dag.py
+│   ├── upstream_failure_dag.py
+│   └── utils.py                 # shared on_failure_callback + db_conn
 ├── docker-compose.yml
 ├── .env.example
 └── CLAUDE.md
@@ -78,16 +81,7 @@ POSTGRES_PASSWORD=airflow
 docker compose up -d
 ```
 
-This starts Airflow (webserver + scheduler + worker), Postgres, and the FastAPI backend.
-
-### Backend (FastAPI)
-```bash
-cd backend
-python3.11 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
+This starts Airflow (webserver + scheduler + worker), Postgres, and the FastAPI backend. The FastAPI container mounts `./backend` and runs with `--reload`, so code changes are picked up automatically.
 
 ### Frontend (React)
 ```bash
